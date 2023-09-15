@@ -1,0 +1,223 @@
+[
+    {
+        "id": "85c467ac7701e36f",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "99b1f272cd9ea57e",
+        "type": "json",
+        "z": "85c467ac7701e36f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 470,
+        "y": 340,
+        "wires": [
+            [
+                "5cc6850b8d5670ab",
+                "2958671b9bbaf7da"
+            ]
+        ]
+    },
+    {
+        "id": "011421592c3f3f14",
+        "type": "debug",
+        "z": "85c467ac7701e36f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "dd33d111c3705f55",
+        "type": "serial in",
+        "z": "85c467ac7701e36f",
+        "name": "",
+        "serial": "dd6efdb4f1aa241e",
+        "x": 210,
+        "y": 340,
+        "wires": [
+            [
+                "99b1f272cd9ea57e"
+            ]
+        ]
+    },
+    {
+        "id": "5cc6850b8d5670ab",
+        "type": "function",
+        "z": "85c467ac7701e36f",
+        "name": "function 1",
+        "func": "var B = {\n    payload: {\n        \"Sensor\": \"PPM\",\n        \"Valor\": msg.payload.ldrValue.toString()\n    }\n};\n\nreturn B;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 220,
+        "wires": [
+            [
+                "011421592c3f3f14",
+                "263f19b86a96afa2"
+            ]
+        ]
+    },
+    {
+        "id": "263f19b86a96afa2",
+        "type": "mqtt out",
+        "z": "85c467ac7701e36f",
+        "name": "",
+        "topic": "FIAP/ChallengeMatters",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6b10a7944ec5bd5d",
+        "x": 930,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "877ac41c620c9097",
+        "type": "mqtt out",
+        "z": "85c467ac7701e36f",
+        "name": "",
+        "topic": "tago/data/post",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "750f5651e942a0e3",
+        "x": 900,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "2958671b9bbaf7da",
+        "type": "function",
+        "z": "85c467ac7701e36f",
+        "name": "function 2",
+        "func": "var currentDate = new Date();\n\nvar C = {\n    payload: {\n        \"variable\": \"PPM\",\n        \"unit\": \"valor\",\n        \"value\": msg.payload.ldrValue.toString()\n    }\n};\n\nreturn C;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 400,
+        "wires": [
+            [
+                "877ac41c620c9097",
+                "9f7d1315f7747893"
+            ]
+        ]
+    },
+    {
+        "id": "9f7d1315f7747893",
+        "type": "debug",
+        "z": "85c467ac7701e36f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "dd6efdb4f1aa241e",
+        "type": "serial-port",
+        "serialport": "COM4",
+        "serialbaud": "57600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "6b10a7944ec5bd5d",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt-dashboard.com",
+        "port": "1883",
+        "clientid": "Utida",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "750f5651e942a0e3",
+        "type": "mqtt-broker",
+        "name": "TagoIO",
+        "broker": "mqtt.tago.io",
+        "port": "1883",
+        "clientid": "Utidolas_mqtt",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
