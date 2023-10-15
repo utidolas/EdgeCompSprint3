@@ -2,7 +2,7 @@
     {
         "id": "85c467ac7701e36f",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Challenge4",
         "disabled": false,
         "info": "",
         "env": []
@@ -20,7 +20,9 @@
         "wires": [
             [
                 "5cc6850b8d5670ab",
-                "2958671b9bbaf7da"
+                "2958671b9bbaf7da",
+                "2f8330b94f084dbc",
+                "3a73ba58f9cb2da2"
             ]
         ]
     },
@@ -37,8 +39,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 880,
-        "y": 160,
+        "x": 900,
+        "y": 20,
         "wires": []
     },
     {
@@ -59,15 +61,15 @@
         "id": "5cc6850b8d5670ab",
         "type": "function",
         "z": "85c467ac7701e36f",
-        "name": "function 1",
-        "func": "var B = {\n    payload: {\n        \"Sensor\": \"PPM\",\n        \"Valor\": msg.payload.ldrValue.toString()\n    }\n};\n\nreturn B;\n",
+        "name": "Od1",
+        "func": "var B = {\n    payload: {\n        \"Sensor\": \"OxigenioDissolvido\",\n        \"Valor\": msg.payload.OdValue.toString()\n    }\n};\n\nreturn B;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 220,
+        "x": 670,
+        "y": 80,
         "wires": [
             [
                 "011421592c3f3f14",
@@ -80,8 +82,8 @@
         "type": "mqtt out",
         "z": "85c467ac7701e36f",
         "name": "",
-        "topic": "FIAP/ChallengeMatters",
-        "qos": "",
+        "topic": "FIAP/ChallengeMatters/Od",
+        "qos": "0",
         "retain": "",
         "respTopic": "",
         "contentType": "",
@@ -89,8 +91,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6b10a7944ec5bd5d",
-        "x": 930,
-        "y": 260,
+        "x": 960,
+        "y": 120,
         "wires": []
     },
     {
@@ -107,23 +109,23 @@
         "correl": "",
         "expiry": "",
         "broker": "750f5651e942a0e3",
-        "x": 900,
-        "y": 340,
+        "x": 920,
+        "y": 200,
         "wires": []
     },
     {
         "id": "2958671b9bbaf7da",
         "type": "function",
         "z": "85c467ac7701e36f",
-        "name": "function 2",
-        "func": "var currentDate = new Date();\n\nvar C = {\n    payload: {\n        \"variable\": \"PPM\",\n        \"unit\": \"valor\",\n        \"value\": msg.payload.ldrValue.toString()\n    }\n};\n\nreturn C;\n",
+        "name": "Od2",
+        "func": "var currentDate = new Date();\n\nvar C = {\n    payload: {\n        \"variable\": \"OxigenioDissolvido\",\n        \"unit\": \"%\",\n        \"value\": msg.payload.OdValue.toString()\n    }\n};\n\nreturn C;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 400,
+        "x": 670,
+        "y": 260,
         "wires": [
             [
                 "877ac41c620c9097",
@@ -143,8 +145,117 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 880,
+        "x": 900,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3a73ba58f9cb2da2",
+        "type": "function",
+        "z": "85c467ac7701e36f",
+        "name": "Temp2",
+        "func": "var currentDate = new Date();\n\nvar E = {\n    payload: {\n        \"variable\": \"Temperatura\",\n        \"unit\": \"graus\",\n        \"value\": msg.payload.TmpValue.toString()\n    }\n};\n\nreturn E;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 580,
+        "wires": [
+            [
+                "4fc53ace46ae55fd",
+                "3e4a4eb89a6e0de5"
+            ]
+        ]
+    },
+    {
+        "id": "2f8330b94f084dbc",
+        "type": "function",
+        "z": "85c467ac7701e36f",
+        "name": "Temp1",
+        "func": "var D = {\n    payload: {\n        \"Sensor\": \"Temperatura\",\n        \"Valor\": msg.payload.TmpValue.toString()\n    }\n};\n\nreturn D;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
         "y": 440,
+        "wires": [
+            [
+                "0f2ca39e62e4092c",
+                "ba40fa4f63352649"
+            ]
+        ]
+    },
+    {
+        "id": "0f2ca39e62e4092c",
+        "type": "mqtt out",
+        "z": "85c467ac7701e36f",
+        "name": "",
+        "topic": "FIAP/ChallengeMatters/Tmp",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6b10a7944ec5bd5d",
+        "x": 980,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "ba40fa4f63352649",
+        "type": "debug",
+        "z": "85c467ac7701e36f",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "3e4a4eb89a6e0de5",
+        "type": "debug",
+        "z": "85c467ac7701e36f",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "4fc53ace46ae55fd",
+        "type": "mqtt out",
+        "z": "85c467ac7701e36f",
+        "name": "",
+        "topic": "tago/data/post",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "750f5651e942a0e3",
+        "x": 940,
+        "y": 540,
         "wires": []
     },
     {

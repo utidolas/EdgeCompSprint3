@@ -13,10 +13,12 @@ void setup() {
 void loop() {
   // read the input on Analog pin 0:
   int dhtValue = DHT.read11(dhtPin);
+  float temperature = DHT.temperature;
+  float humidity = DHT.humidity;
 
   StaticJsonDocument<100> json;
-  json["OdValue"] = DHT.temperature; // humidity = Dissolved Oxygen sensor (example)
-  json["TmpValue"] = DHT.humidity; // temperatura = Temperature (since its a WQI's parameter) 
+  json["OdValue"] = temperature; // humidity = Dissolved Oxygen sensor (example)
+  json["TmpValue"] = humidity; // temperatura = Temperature (since its a WQI's parameter) 
 
   String jsonString;
   serializeJson(json, Serial);
