@@ -1,6 +1,6 @@
 [
     {
-        "id": "85c467ac7701e36f",
+        "id": "8d6e101c1f119a9f",
         "type": "tab",
         "label": "Challenge4",
         "disabled": false,
@@ -8,136 +8,31 @@
         "env": []
     },
     {
-        "id": "99b1f272cd9ea57e",
-        "type": "json",
-        "z": "85c467ac7701e36f",
+        "id": "f06aed96632a6545",
+        "type": "mqtt in",
+        "z": "8d6e101c1f119a9f",
         "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 470,
-        "y": 340,
-        "wires": [
-            [
-                "5cc6850b8d5670ab",
-                "2958671b9bbaf7da",
-                "2f8330b94f084dbc",
-                "3a73ba58f9cb2da2"
-            ]
-        ]
-    },
-    {
-        "id": "011421592c3f3f14",
-        "type": "debug",
-        "z": "85c467ac7701e36f",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 900,
-        "y": 20,
-        "wires": []
-    },
-    {
-        "id": "dd33d111c3705f55",
-        "type": "serial in",
-        "z": "85c467ac7701e36f",
-        "name": "",
-        "serial": "dd6efdb4f1aa241e",
-        "x": 210,
-        "y": 340,
-        "wires": [
-            [
-                "99b1f272cd9ea57e"
-            ]
-        ]
-    },
-    {
-        "id": "5cc6850b8d5670ab",
-        "type": "function",
-        "z": "85c467ac7701e36f",
-        "name": "Od1",
-        "func": "var B = {\n    payload: {\n        \"Sensor\": \"OxigenioDissolvido\",\n        \"Valor\": msg.payload.OdValue.toString()\n    }\n};\n\nreturn B;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 670,
-        "y": 80,
-        "wires": [
-            [
-                "011421592c3f3f14",
-                "263f19b86a96afa2"
-            ]
-        ]
-    },
-    {
-        "id": "263f19b86a96afa2",
-        "type": "mqtt out",
-        "z": "85c467ac7701e36f",
-        "name": "",
-        "topic": "FIAP/ChallengeMatters/Od",
+        "topic": "fiap/Serelepes/temp",
         "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
+        "datatype": "auto-detect",
         "broker": "6b10a7944ec5bd5d",
-        "x": 960,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "877ac41c620c9097",
-        "type": "mqtt out",
-        "z": "85c467ac7701e36f",
-        "name": "",
-        "topic": "tago/data/post",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "750f5651e942a0e3",
-        "x": 920,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "2958671b9bbaf7da",
-        "type": "function",
-        "z": "85c467ac7701e36f",
-        "name": "Od2",
-        "func": "var currentDate = new Date();\n\nvar C = {\n    payload: {\n        \"variable\": \"OxigenioDissolvido\",\n        \"unit\": \"%\",\n        \"value\": msg.payload.OdValue.toString()\n    }\n};\n\nreturn C;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 670,
-        "y": 260,
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 350,
+        "y": 220,
         "wires": [
             [
-                "877ac41c620c9097",
-                "9f7d1315f7747893"
+                "daa5b219404b84a3"
             ]
         ]
     },
     {
-        "id": "9f7d1315f7747893",
+        "id": "a261399b9db80abc",
         "type": "debug",
-        "z": "85c467ac7701e36f",
-        "name": "debug 2",
+        "z": "8d6e101c1f119a9f",
+        "name": "debug 5",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -145,137 +40,158 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 900,
-        "y": 300,
+        "x": 700,
+        "y": 160,
         "wires": []
     },
     {
-        "id": "3a73ba58f9cb2da2",
-        "type": "function",
-        "z": "85c467ac7701e36f",
-        "name": "Temp2",
-        "func": "var currentDate = new Date();\n\nvar E = {\n    payload: {\n        \"variable\": \"Temperatura\",\n        \"unit\": \"graus\",\n        \"value\": msg.payload.TmpValue.toString()\n    }\n};\n\nreturn E;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 670,
-        "y": 580,
-        "wires": [
-            [
-                "4fc53ace46ae55fd",
-                "3e4a4eb89a6e0de5"
-            ]
-        ]
-    },
-    {
-        "id": "2f8330b94f084dbc",
-        "type": "function",
-        "z": "85c467ac7701e36f",
-        "name": "Temp1",
-        "func": "var D = {\n    payload: {\n        \"Sensor\": \"Temperatura\",\n        \"Valor\": msg.payload.TmpValue.toString()\n    }\n};\n\nreturn D;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 670,
+        "id": "02664e1aa1779442",
+        "type": "mqtt in",
+        "z": "8d6e101c1f119a9f",
+        "name": "",
+        "topic": "fiap/Serelepes/oxigenio",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "6b10a7944ec5bd5d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
         "y": 440,
         "wires": [
             [
-                "0f2ca39e62e4092c",
-                "ba40fa4f63352649"
+                "9a19f9a3bcfe8840"
             ]
         ]
     },
     {
-        "id": "0f2ca39e62e4092c",
-        "type": "mqtt out",
-        "z": "85c467ac7701e36f",
-        "name": "",
-        "topic": "FIAP/ChallengeMatters/Tmp",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "6b10a7944ec5bd5d",
-        "x": 980,
+        "id": "8b76ac1c0b88a297",
+        "type": "debug",
+        "z": "8d6e101c1f119a9f",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
         "y": 380,
         "wires": []
     },
     {
-        "id": "ba40fa4f63352649",
-        "type": "debug",
-        "z": "85c467ac7701e36f",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 920,
+        "id": "fbb37be3025fd273",
+        "type": "ui_gauge",
+        "z": "8d6e101c1f119a9f",
+        "name": "",
+        "group": "e308c72906797974",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temp",
+        "label": "°",
+        "format": "{{value}}",
+        "min": "-30",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 690,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "812e467d2df4df3a",
+        "type": "ui_gauge",
+        "z": "8d6e101c1f119a9f",
+        "name": "",
+        "group": "030a321eb081c784",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Oxigenio",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 720,
         "y": 480,
         "wires": []
     },
     {
-        "id": "3e4a4eb89a6e0de5",
-        "type": "debug",
-        "z": "85c467ac7701e36f",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 920,
-        "y": 660,
-        "wires": []
+        "id": "daa5b219404b84a3",
+        "type": "change",
+        "z": "8d6e101c1f119a9f",
+        "name": "Temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperatura",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "a261399b9db80abc",
+                "fbb37be3025fd273"
+            ]
+        ]
     },
     {
-        "id": "4fc53ace46ae55fd",
-        "type": "mqtt out",
-        "z": "85c467ac7701e36f",
-        "name": "",
-        "topic": "tago/data/post",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "750f5651e942a0e3",
-        "x": 940,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "dd6efdb4f1aa241e",
-        "type": "serial-port",
-        "serialport": "COM4",
-        "serialbaud": "57600",
-        "databits": "8",
-        "parity": "none",
-        "stopbits": "1",
-        "waitfor": "",
-        "dtr": "none",
-        "rts": "none",
-        "cts": "none",
-        "dsr": "none",
-        "newline": "\\n",
-        "bin": "false",
-        "out": "char",
-        "addchar": "",
-        "responsetimeout": "10000"
+        "id": "9a19f9a3bcfe8840",
+        "type": "change",
+        "z": "8d6e101c1f119a9f",
+        "name": "Oxygen",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.oxigenioDissolvido",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 440,
+        "wires": [
+            [
+                "8b76ac1c0b88a297",
+                "812e467d2df4df3a"
+            ]
+        ]
     },
     {
         "id": "6b10a7944ec5bd5d",
@@ -305,30 +221,33 @@
         "sessionExpiry": ""
     },
     {
-        "id": "750f5651e942a0e3",
-        "type": "mqtt-broker",
-        "name": "TagoIO",
-        "broker": "mqtt.tago.io",
-        "port": "1883",
-        "clientid": "Utidolas_mqtt",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
+        "id": "e308c72906797974",
+        "type": "ui_group",
+        "name": "Temperatura",
+        "tab": "e24c463cf5af8f9f",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "030a321eb081c784",
+        "type": "ui_group",
+        "name": "Oxygen",
+        "tab": "e24c463cf5af8f9f",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e24c463cf5af8f9f",
+        "type": "ui_tab",
+        "name": "CP4",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
     }
 ]
